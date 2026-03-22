@@ -7,7 +7,7 @@ An AI-powered recruitment platform that automates candidate screening via phone 
 ## Tech Stack
 
 - **Backend** — Node.js + Express + TypeScript, PostgreSQL
-- **Frontend** — Next.js 15 (App Router) + Tailwind CSS
+- **Frontend** — Vite + React + React Router v6, shadcn/ui, Tailwind CSS
 - **AI Voice** — OpenClaw API (conducts phone interviews)
 - **Phone** — ClawdTalk API (outbound call management)
 
@@ -32,8 +32,6 @@ psql -U postgres -c "CREATE DATABASE recruiter;"
 The tables (`jobs`, `candidates`, `calls`) are created automatically on first startup — no migration step needed.
 
 ### 2. Clone the repo
-
-
 
 ```bash
 git clone https://github.com/PesseJinkman/clawtalk-ai-recruiter.git
@@ -63,10 +61,10 @@ CLAWDTALK_API_KEY=your_clawdtalk_api_key
 
 ### 4. Frontend environment
 
-Create `frontend/.env.local`:
+Create `frontend/.env`:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
+VITE_API_URL=http://localhost:8000
 ```
 
 ### 5. Install dependencies
@@ -89,11 +87,11 @@ Open two terminal tabs:
 # Terminal 1 — Backend (port 8000)
 cd backend && npm run dev
 
-# Terminal 2 — Frontend (port 3000)
+# Terminal 2 — Frontend (port 8080)
 cd frontend && npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000).
+Then open [http://localhost:8080](http://localhost:8080).
 
 ---
 
@@ -108,7 +106,7 @@ npm run start
 # Frontend
 cd frontend
 npm run build
-npm run start
+npm run preview
 ```
 
 ---
@@ -120,9 +118,12 @@ npm run start
 | `POST` | `/jobs` | Create a new job |
 | `GET` | `/jobs` | List all jobs |
 | `GET` | `/jobs/:id` | Get job details |
-| `POST` | `/jobs/:id/candidates` | Upload candidate resume (PDF) |
+| `POST` | `/jobs/:id/candidates` | Upload candidate resume (PDF or DOCX) |
 | `GET` | `/jobs/:id/candidates` | List candidates for a job |
-| `POST` | `/jobs/:id/calls` | Start AI screening calls |
+| `GET` | `/jobs/:id/candidates/:cid` | Get candidate detail with transcript |
+| `POST` | `/jobs/:id/candidates/:cid/call` | Call a single candidate |
+| `POST` | `/jobs/:id/calls/start` | Start AI screening calls for all pending candidates |
+| `GET` | `/jobs/:id/calls` | List calls for a job |
 | `GET` | `/calls/:id` | Get call status & transcript |
 | `POST` | `/calls/:id/reschedule` | Reschedule a call |
 | `GET` | `/jobs/:id/report` | Download screening report (Markdown) |
@@ -142,12 +143,13 @@ clawtalk-ai-recruiter/
 │       └── services/
 │           ├── openclaw.ts   # AI interview orchestration
 │           ├── clawdtalk.ts  # Phone call management
-│           ├── resume.ts     # PDF parsing & scoring
+│           ├── resume.ts     # PDF/DOCX parsing & scoring
 │           └── report.ts     # Markdown report generation
 └── frontend/
-    └── app/
-        ├── page.tsx                          # Landing page
-        ├── jobs/new/page.tsx                 # Create job form
-        ├── jobs/[id]/page.tsx                # Job detail & candidate list
-        └── jobs/[id]/candidates/[cid]/page.tsx  # Candidate detail & transcript
+    └── src/
+        ├── lib/
+        │   ├── api.ts        # API client functions
+        │   └── types.ts      # Shared TypeScript types
+        ├── pages/            # Route components
+        └── components/       # Shared UI components
 ```
