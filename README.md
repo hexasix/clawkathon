@@ -4,7 +4,9 @@ An end-to-end AI recruitment platform built for the **Clawkathon** hackathon. It
 
 **Live:** [http://45.63.77.206:8080/](http://45.63.77.206:8080/)
 
-**Youtube:** [https://www.youtube.com/watch?v=THe2YdNID_M](https://www.youtube.com/watch?v=THe2YdNID_M)
+[**Youtube**](https://www.youtube.com/watch?v=THe2YdNID_M)
+
+[**Slides**](https://www.figma.com/deck/JdTKMpPmxH774zQa1EDtVj/Clawckathon?node-id=1-29&t=3odhlnOiQRY7SO8u-1)
 
 **Flow:** Create job → Upload resumes → AI calls candidates → Scores & transcripts captured → Report generated → HR debriefed via SMS
 
