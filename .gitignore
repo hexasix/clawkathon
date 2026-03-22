@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.db
+*.zip
+.env
+.env.local
+reports/
+.next/
+tsconfig.tsbuildinfo
