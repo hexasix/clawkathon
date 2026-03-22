@@ -95,8 +95,8 @@ export async function runCall(callId: string, candidate: db.Candidate, job: db.J
       transcript,
     });
 
-    const { summary, recommendation, ...numericScores } = scores;
-    await db.updateCandidateScores(candidate.id, numericScores, summary, recommendation);
+    const { summary, recommendation, ...candidateScores } = scores;
+    await db.updateCandidateScores(candidate.id, candidateScores, summary, recommendation);
     console.log(`Scored ${candidate.name}: ${scores.overall}/10 (${scores.recommendation})`);
 
   } catch (err) {

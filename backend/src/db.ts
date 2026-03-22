@@ -55,6 +55,17 @@ export interface Job {
   created_at: string;
 }
 
+export interface CandidateScores {
+  communication?: number;
+  experience_fit?: number;
+  skills_match?: number;
+  salary_expectation?: number;
+  availability?: number;
+  motivation_fit?: number;
+  overall?: number;
+  red_flags?: string[];
+}
+
 export interface Candidate {
   id: string;
   job_id: string;
@@ -63,7 +74,7 @@ export interface Candidate {
   email?: string;
   resume_text: string;
   status: 'pending' | 'calling' | 'completed' | 'rescheduled' | 'no_answer';
-  scores?: Record<string, number>;
+  scores?: CandidateScores;
   summary?: string;
   recommendation?: 'advance' | 'maybe' | 'reject';
   created_at: string;
@@ -152,7 +163,7 @@ export async function updateCandidateStatus(id: string, status: Candidate['statu
 
 export async function updateCandidateScores(
   id: string,
-  scores: Record<string, number>,
+  scores: CandidateScores,
   summary: string,
   recommendation: string
 ): Promise<void> {

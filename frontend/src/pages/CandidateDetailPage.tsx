@@ -55,7 +55,13 @@ export default function CandidateDetailPage() {
             </div>
             <div className="grid gap-5">
               <ScoreBar label="Experience Fit" value={candidate.scores.experience_fit} />
+              {candidate.scores.skills_match != null && (
+                <ScoreBar label="Skills Match" value={candidate.scores.skills_match} />
+              )}
               <ScoreBar label="Communication" value={candidate.scores.communication} />
+              {candidate.scores.motivation_fit != null && (
+                <ScoreBar label="Motivation Fit" value={candidate.scores.motivation_fit} />
+              )}
               <ScoreBar label="Salary Expectation" value={candidate.scores.salary_expectation} />
               <ScoreBar label="Availability" value={candidate.scores.availability} />
             </div>
@@ -70,8 +76,35 @@ export default function CandidateDetailPage() {
           </div>
         )}
 
+        {/* Red Flags */}
+        {candidate.scores?.red_flags && candidate.scores.red_flags.length > 0 && (
+          <div className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-5 animate-fade-in" style={{ animationDelay: '300ms' }}>
+            <h2 className="font-semibold text-amber-500 mb-3 flex items-center gap-2">
+              ⚠ Red Flags
+            </h2>
+            <ul className="space-y-1.5">
+              {candidate.scores.red_flags.map((flag, i) => (
+                <li key={i} className="text-sm text-amber-200/80 flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-amber-500">•</span>
+                  {flag}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Resume */}
+        {candidate.resume_text && (
+          <div className="card-surface mb-6 animate-fade-in" style={{ animationDelay: '350ms' }}>
+            <h2 className="font-semibold text-foreground mb-3">Resume</h2>
+            <pre className="text-xs text-muted-foreground leading-relaxed whitespace-pre-wrap font-sans max-h-72 overflow-y-auto">
+              {candidate.resume_text}
+            </pre>
+          </div>
+        )}
+
         {/* Transcript */}
-        <div className="card-surface animate-fade-in" style={{ animationDelay: '350ms' }}>
+        <div className="card-surface animate-fade-in" style={{ animationDelay: '450ms' }}>
           <h2 className="font-semibold text-foreground mb-5">Call Transcript</h2>
           {!callCompleted || transcript.length === 0 ? (
             <p className="text-sm text-muted-foreground">No transcript available yet.</p>

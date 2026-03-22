@@ -32,9 +32,12 @@ export interface Job {
 export interface Scores {
   communication: number;
   experience_fit: number;
+  skills_match?: number;
   salary_expectation: number;
   availability: number;
+  motivation_fit?: number;
   overall: number;
+  red_flags?: string[];
 }
 
 export interface TranscriptEntry {
