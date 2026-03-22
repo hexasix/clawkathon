@@ -1,4 +1,4 @@
-# Clawkathon — AI-Powered Recruitment Platform
+# Clawcruiter — Openclaw-Powered Recruitment Platform
 
 An end-to-end AI recruitment platform built for the **Clawkathon** hackathon. It automates candidate screening via real phone calls: upload resumes, and the system calls every candidate, conducts a structured voice interview, scores them against your job criteria, generates a ranked report, and texts the HR manager a debrief — all without a human in the loop.
 
