@@ -1,4 +1,4 @@
-# Clawtalk AI Recruiter - Hackathon Submission
+# Clawtalk AI Recruiter
 
 An AI-powered recruitment platform that automates candidate screening via phone interviews. The system calls candidates, conducts structured interviews using an AI voice agent, scores them against your job criteria, and delivers a debrief report directly to the HR manager's phone.
 
