@@ -2,6 +2,9 @@
 
 An end-to-end AI recruitment platform built for the **Clawkathon** hackathon. It automates candidate screening via real phone calls: upload resumes, and the system calls every candidate, conducts a structured voice interview, scores them against your job criteria, generates a ranked report, and texts the HR manager a debrief — all without a human in the loop.
 
+**Live:** [http://45.63.77.206:8080/](http://45.63.77.206:8080/)
+**Youtube:** [https://www.youtube.com/watch?v=THe2YdNID_M](https://www.youtube.com/watch?v=THe2YdNID_M)
+
 **Flow:** Create job → Upload resumes → AI calls candidates → Scores & transcripts captured → Report generated → HR debriefed via SMS
 
 ---
